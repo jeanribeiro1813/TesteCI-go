@@ -1,27 +1,21 @@
 name: ci-golang-workflow
-#Aqui estou dizendo que quando eu fazer o processo de Push
 on: 
   pull_request:
     branches:
       - develop
-#Aqui é os Jobs , no caso os processos que ficar executando 
+
 jobs:
-#Primeiro Job , Check-Aplication
-  check-application:
-  #Aonde eu quero executar essa aplicação
   
+  check-application:
+  
+    strategy:
+      matrix:
+        go: ['1.14','1.15']
     runs-on: ubuntu-latest
-    #os passos que vão dar
     steps:
-    #Essa action é um usuario do git e / seu repositorio , ou seja são servicos que esta dentro do github
-    #Vai pegar os dados que acabei de subir e vai baixar na minha maquina ubuntu
-    #Quando eu quero usar uma action coloco no uses
       - uses: actions/checkout@v2
-    #Vai criar um ambiente em go 
       - uses: actions/setup-go@v2
-      # qual vesão do Go que vou utilizar
         with:
-          go-version: 1.15
-      #Rodar comando run
+          go-version: ${{ matrix.go }}
       - run: go test
       - run: go run math.go
