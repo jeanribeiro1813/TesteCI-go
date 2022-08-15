@@ -1,6 +1,9 @@
 name: ci-golang-workflow
 #Aqui estou dizendo que quando eu fazer o processo de Push
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - develop
 #Aqui é os Jobs , no caso os processos que ficar executando 
 jobs:
 #Primeiro Job , Check-Aplication
