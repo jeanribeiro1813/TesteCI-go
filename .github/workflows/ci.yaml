@@ -41,4 +41,4 @@ jobs:
          uses: docker/build-push-action@v3
          with:
           push: true
-          tags: jeanribeiro1813/testeci-go:latest
+          tags: jeanribeirosanto1813/testeci-go:latest
